@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reatoran Sunda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B5A2B;
+            --secondary: #D4A762;
+            --dark: #3E2723;
+            --light: #F5F5DC;
+            --accent: #A52A2A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 10px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('BG Utama.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        .logo-text {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--secondary);
+            border-radius: 10px;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+        }
+        
+        /* Menu Section */
+        .menu {
+            background-color: #f9f5f0;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-card-content {
+            padding: 20px;
+        }
+        
+        .menu-card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .menu-card-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        /* Special Menu */
+        .special-menu {
+            text-align: center;
+        }
+        
+        .special-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .testimonial .section-title h2 {
+            color: white;
+        }
+        
+        .testimonial-slide {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-content {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Reservation */
+        .reservation-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-column p,
+        .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="Logo Utama.png" alt="Warung Kopi Nusantara">
+                <span class="logo-text">L"Sundanesse</span>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#special">Spesial</a></li>
+                    <li><a href="#reservation">Reservasi</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Rasa Autentik Nusantara</h1>
+                <p>Nikmati pengalaman kuliner tradisional cita rasa Sunda dengan sentuhan modern di L"Sundanesse</p>
+                <div>
+                    <a href="#menu" class="btn">Lihat Menu</a>
+                    <a href="#reservation" class="btn btn-outline">Reservasi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Kami</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Restoran Sunda dengan Cita Rasa Tradisional</h3>
+                    <p>Restoran Sunda Luthvy hadir untuk melestarikan kekayaan kuliner khas Tatar Pasundan dengan menyajikan berbagai hidangan dan minuman tradisional Sunda dalam sentuhan modern.</p>
+                    <p>Kami menggunakan bahan-bahan pilihan yang diperoleh langsung dari petani lokal untuk menjaga kualitas serta keaslian rasa di setiap sajian.</p>
+                    <p>Dengan suasana yang hangat, alami, dan khas pedesaan Sunda, kami ingin setiap kunjungan Anda menjadi pengalaman yang berkesan dan penuh cita rasa.</p>
+                    <a href="#special" class="btn">Menu Spesial Kami</a>
+                </div>
+                <div class="about-image">
+                    <img src="Suasana.jpg" alt="Tentang Warung Kopi Nusantara">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menu Andalan</h2>
+            </div>
+            <div class="menu-grid">
+                <!-- Menu Item 1 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/Ayam goreng Kampung.jpeg" alt="Ayam goreng Kampung">
+                    <div class="menu-card-content">
+                        <h3>Ayam Goreng Kampung</h3>
+                        <p>Ayam kampung yang digoreng hingga renyah dengan bumbu khas, cocok disantap bersama sambal dan nasi hangat.</p>
+                        <div class="price">Rp22.000</div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 2 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/liwet.jpg" alt="Nasi Liwet">
+                    <div class="menu-card-content">
+                        <h3>Nasi Liwet Komplet</h3>
+                        <p>Nasi liwet khas Sunda dengan lauk ayam, tahu, tempe, telur, dan sambal terasi.</p>
+                        <div class="price">Rp35.000</div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 3 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/Gurame.jpeg" alt="Gurame Goreng / Bakar">
+                    <div class="menu-card-content">
+                        <h3>Gurame Goreng / Bakar</h3>
+                        <p>Ikan gurame segar yang digoreng garing atau dibakar dengan bumbu rempah khas Sunda, disajikan dengan sambal dan lalapan.</p>
+                        <div class="price">Rp40.000-80.000</div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 4 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/Cendol dawet.jpg" alt="Es Cendol">
+                    <div class="menu-card-content">
+                        <h3>Es Cendol Dawet</h3>
+                        <p>Minuman segar dengan cendol, santan, gula merah, dan es serut.</p>
+                        <div class="price">Rp10.000</div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 5 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/Karedok.jpg" alt="Karedok">
+                    <div class="menu-card-content">
+                        <h3>Karedok</h3>
+                        <p>Salad khas Sunda dari sayuran mentah segar dengan siraman saus kacang yang gurih dan pedas.</p>
+                        <div class="price">Rp12.000</div>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 6 -->
+                <div class="menu-card">
+                    <img src="Menu Andalan/Sayur asem.jpg" alt="Sayur Asem">
+                    <div class="menu-card-content">
+                        <h3>Sayur Asem</h3>
+                        <p>Sup asam segar berisi jagung, labu siam, kacang panjang, dan melinjo, cocok disantap dengan nasi hangat.</p>
+                        <div class="price">Rp10.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Menu Section -->
+    <section class="section special-menu" id="special">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menu Spesial Grand Opening</h2>
+            </div>
+            <div class="special-tabs">
+                <button class="tab-btn active" data-tab="sarapan">Sarapan</button>
+                <button class="tab-btn" data-tab="makan-siang">Makan Siang</button>
+                <button class="tab-btn" data-tab="makan-malam">Makan Malam</button>
+            </div>
+            
+            <!-- Sarapan Tab Content -->
+            <div class="tab-content active" id="sarapan">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img src="Spesial GO/SRPN/BUBUR.jpg" alt="Bubur Ayam">
+                        <div class="menu-card-content">
+                            <h3>Bubur Ayam Kongkorongok</h3>
+                            <p>Bubur nasi lembut yang disajikan hangat, dipadu dengan suwiran ayam kampung, kerupuk, kacang kedelai goreng, seledri, dan sambal khas. Rasa rumahan yang membangkitkan kenangan pagi di pedesaan.</p>
+                            <div class="price">Rp18.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/SRPN/Nasi Kuning.png" alt="Nasi Kuning Pagi Hari">
+                        <div class="menu-card-content">
+                            <h3>Nasi Kuning Pagi Hari</h3>
+                            <p>Nasi kuning harum berbalut santan dan kunyit, disajikan dengan telur balado, orek tempe manis pedas, ayam goreng kecil, dan pelengkap segar.</p>
+                            <div class="price">Rp20.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/SRPN/Serabi.jpg" alt="Serabi">
+                        <div class="menu-card-content">
+                            <h3>Serabi Kinca & Oncom</h3>
+                            <p>Serabi tradisional berbahan dasar tepung beras, tersedia dalam dua rasa: manis legit dengan kinca gula merah, atau gurih pedas dengan topping oncom tumis khas Sunda</p>
+                            <div class="price">Rp12.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Makan Siang Tab Content -->
+            <div class="tab-content" id="makan-siang">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img src="Menu Andalan/liwet.jpg" alt="Liwet">
+                        <div class="menu-card-content">
+                            <h3>Nasi Liwet Saung</h3>
+                            <p>Nasi gurih dimasak dalam santan dan daun salam, disajikan lengkap dengan ayam goreng renyah, tahu, tempe, sambal terasi, dan lalapan segar. Disajikan ala dulang (nampan kayu) untuk nuansa tradisional.</p>
+                            <div class="price">Rp35.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/LUNCH/gurame.jpg" alt="gurame">
+                        <div class="menu-card-content">
+                            <h3> Gurame Bakar Cikur</h3>
+                            <p>Ikan gurame segar dibakar dengan olesan bumbu khas Sunda yang berpadu dengan cita rasa cikur (kencur), sambal kecap, dan lalapan segar di sisi.</p>
+                            <div class="price">Rp48.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/LUNCH/Kangkung.jpg" alt="Kangkung">
+                        <div class="menu-card-content">
+                            <h3>Tumis Kangkung Kampung</h3>
+                            <p>Kangkung segar ditumis bawang putih dan terasi, disajikan dengan tahu, tempe, nasi hangat, dan sambal cobek. Cocok untuk makan siang cepat namun tetap penuh rasa.</p>
+                            <div class="price">Rp22.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Makan Malam Tab Content -->
+            <div class="tab-content" id="makan-malam">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img src="Spesial GO/DINNER/sate-maranggi.jpg" alt="sate-maranggi">
+                        <div class="menu-card-content">
+                            <h3>Sate Maranggi Purwakarta</h3>
+                            <p>Sate sapi empuk dengan bumbu rendaman khas Sunda, dibakar perlahan hingga harum, disajikan dengan sambal oncom dan nasi pulen.</p>
+                            <div class="price">Rp40.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/DINNER/Sayur Asem Enak.jpg" alt="Sayur Asem Enak">
+                        <div class="menu-card-content">
+                            <h3>Sayur Asem Pedesaan</h3>
+                            <p>Sup segar berisi jagung manis, labu siam, kacang panjang, dan melinjo. Cocok dinikmati hangat bersama ikan asin goreng dan sambal dadak.</p>
+                            <div class="price">Rp25.000</div>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="Spesial GO/DINNER/Timbel.jpg" alt="Timbel">
+                        <div class="menu-card-content">
+                            <h3>Nasi Timbel Tradisi</h3>
+                            <p>Nasi pulen dibungkus daun pisang untuk aroma khas, lengkap dengan ayam goreng kampung, tahu, tempe, sambal terasi, lalapan, dan sayur asem kecil. Hidangan malam yang sempurna ala Sunda sejati.</p>
+                            <div class="price">Rp38.000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section testimonial">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apa Kata Mereka</h2>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-content">
+                    "Restoran Sunda Luthvy memberikan pengalaman makan yang berbeda. Rasa makanannya sangat autentik, mengingatkan saya pada masakan ibu di kampung. Tempatnya juga nyaman, cocok untuk makan bersama keluarga atau sekadar bersantai menikmati suasana pedesaan."
+                </div>
+                <div class="testimonial-author">- Bagas Dabi, Pelanggan Setia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="section" id="reservation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reservasi Meja</h2>
+            </div>
+            <div class="reservation-form">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" placeholder="Nama lengkap anda " required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="contoh@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" placeholder="contoh:08123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Jumlah Tamu</label>
+                            <select id="guests" required>
+                                <option value="1">1 Orang</option>
+                                <option value="2">2 Orang</option>
+                                <option value="3">3 Orang</option>
+                                <option value="4">4 Orang</option>
+                                <option value="5">5 Orang</option>
+                                <option value="6">6+ Orang</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Tanggal</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Waktu</label>
+                            <select id="time" required>
+                                <option value="breakfast">Sarapan (08:00-11:00)</option>
+                                <option value="lunch">Makan Siang (11:00-15:00)</option>
+                                <option value="dinner">Makan Malam (18:00-22:00)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Catatan Khusus</label>
+                        <input type="notes" id="notes" name="notes" placeholder="contoh(Jumlah orang, Request Menu, Dan lainnya)" required>
+
+                    </div>
+                    <button type="submit" class="btn">Pesan Meja Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>L"Sundanesse</h3>
+                    <p>Menghadirkan cita rasa tradisional Sunda dengan sentuhan modern dalam suasana yang hangat dan nyaman.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61571525356919"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vynurd/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtu.be/BNdDM2_3BPE?si=U7f5BbnHuPELjR2p"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Jam Buka</h3>
+                    <p>Senin-Jumat: 08:00 - 22:00</p>
+                    <p>Sabtu-Minggu: 07:00 - 23:00</p>
+                    <p>Hari Libur: 09:00 - 00:00</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Palasari No. 24, Sumedang</p>
+                    <p><i class="fas fa-phone"></i> +62 812-1449-9275</p>
+                    <p><i class="fas fa-envelope"></i> ahunggg17@tsmail.in</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 L"Sundanesse. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Tab Navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
